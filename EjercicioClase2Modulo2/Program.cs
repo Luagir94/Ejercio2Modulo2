@@ -22,7 +22,12 @@
 
             // Detectar cual es el numero mas grande e imprimirlo por consola
 
-            var lstNumeros = new List<int>() { 25,10,99,105, 1, 84, 22};
+            var lstNumeros = new List<int>() { 25, 10, 99, 105, 1, 84, 22 };
+            int maxNumero = lstNumeros.Max();
+            Console.WriteLine("El número más grande es: " + maxNumero);
+
+
+
 
             #endregion
 
@@ -31,11 +36,19 @@
             //Ordenar los nombres alfabeticamente
             var lstNombres = new List<string>() { "Ana", "Alejandro", "Alexis", "Pablo", "Carlos", "Anibal", "Carla", "Susana" };
 
+            var nombresOrdenados = lstNombres.OrderBy(x => x).ToList();
+
+            Console.WriteLine("Nombres ordenados alfabeticamente: " + string.Join(", ", nombresOrdenados));
+
 
             #endregion
 
             #region Ejercicio3
             // Utilizando la variable "lstClientes" filtrar los clientes que tengan vip = true e imprimirlo por consola
+
+            var clientesVip = lstClientes.Where(x => x.Vip).ToList();
+
+            Console.WriteLine("Clientes VIP: " + string.Join(", ", clientesVip.Select(x => x.Nombre)));
 
             #endregion
 
@@ -43,6 +56,9 @@
 
             //Utilizando la variable "lstClientes" crear una nueva lista donde solo se encuentren los nombres de los clientes e imprimir los nombres
 
+            var nombresClientes = lstClientes.Select(x => x.Nombre).ToList();
+
+            Console.WriteLine("Nombres de los clientes: " + string.Join(", ", nombresClientes));
             #endregion
 
             #region Ejercicio5
@@ -50,6 +66,16 @@
             // Nombre tiene que guardarse en mayusculas
             // Apellido tiene que guardarse en mayusculas
             // Vip => se debe evaluar el bool y si es true se debe asignar el texto "Premium" y si es false "Normal"
+
+
+            var clientesModificados = lstClientes.Select(x => new
+            {
+                Nombre = x.Nombre.ToUpper(),
+                Apellido = x.Apellido.ToUpper(),
+                Vip = x.Vip ? "Premium" : "Normal"
+            }).ToList();
+
+            Console.WriteLine("Clientes modificados: " + string.Join(", ", clientesModificados.Select(x => x.Nombre + " " + x.Apellido + " " + x.Vip)));
             #endregion
         }
     }
